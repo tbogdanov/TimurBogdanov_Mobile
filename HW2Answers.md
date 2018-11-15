@@ -40,9 +40,9 @@ Don't forget to start the Appium server, of course.
 **5. What should be improved/changed in existing test code? Why, for what?**
 (some of them were fixed right away)
 * We use Java, so we should use CamelCase in method and variable names!
-* There were too many obvious comments in DriverSetup
+* There were too many obvious comments in hw2.DriverSetup
 * Also, we used a specific device in capabilities. Apparently we'll need to use other devices for tests using .json structures.
 * There were System.out.println() usages. Better using logging libraries for that.
 * A *lot* of hardcoded strings. Better use properties or enums for that. Apparently we'll have to use the pageObject pattern to avoid that as well.
 * Moreover, there was an absolute path to the apk in the code. What if we use another environment?
-* Better move DriverSetup to main/java? It's not testing anything.
+* Better move hw2.DriverSetup to main/java? It's not testing anything.
