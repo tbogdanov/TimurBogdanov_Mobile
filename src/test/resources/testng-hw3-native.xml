@@ -1,0 +1,15 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Mobile test suite" verbose="1" >
+    <test name="Native tests">
+        <groups>
+            <run>
+                <include name="native"/>
+                <exclude name="web"/>
+            </run>
+        </groups>
+        <packages>
+            <package name="hw3.*"/>
+        </packages>
+    </test>
+</suite>
