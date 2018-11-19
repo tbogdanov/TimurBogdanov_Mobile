@@ -1,0 +1,14 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Mobile test suite" verbose="1" >
+    <test name="Native Android tests for Minsk EPAM farm">
+        <groups>
+            <run>
+                <include name="web-ios-farm"/>
+            </run>
+        </groups>
+        <packages>
+            <package name="hw3.*"/>
+        </packages>
+    </test>
+</suite>

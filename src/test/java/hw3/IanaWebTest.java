@@ -17,13 +17,13 @@ public class IanaWebTest extends Driver {
         super();
     }
 
-    @BeforeMethod(groups = "web")
+    @BeforeMethod(groups = {"web", "web-ios-farm"})
     public void preparePage() throws Exception {
         driver().get(SUT);
         ianaSite = new IanaSite(driver());
     }
 
-    @Test(groups = {"web"})
+    @Test(groups = {"web", "web-ios-farm"}, description = "iana.org web page test")
     public void webTest() throws Exception {
         driverWait().until(ExpectedConditions.urlToBe(SUT + "/"));
         checkUrl(driver(), SUT);

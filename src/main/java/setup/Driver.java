@@ -24,6 +24,10 @@ public class Driver extends TestProperties {
     protected static String TEST_PLATFORM;
     protected static String DRIVER;
     protected static String DEVICE_NAME;
+    protected static String APP_PACKAGE;
+    protected static String APP_ACTIVITY;
+    protected static String UDID;
+    protected static String AUTO_LAUNCH;
 
     /**
      * Initialize driver with appropriate capabilities depending on platform and application
@@ -38,7 +42,11 @@ public class Driver extends TestProperties {
         SUT = t_sut == null ? null : String.format("https://%s", t_sut);
         TEST_PLATFORM = getProp("platform");
         DRIVER = getProp("driver");
-        DEVICE_NAME = getProp("device_name");
+        DEVICE_NAME = getProp("deviceName");
+        APP_PACKAGE = getProp("appPackage");
+        APP_ACTIVITY = getProp("appActivity");
+        AUTO_LAUNCH = getProp("autoLaunch");
+        UDID = getProp("udid");
 
         capabilities = new DesiredCapabilities();
         String browserName;
@@ -56,12 +64,16 @@ public class Driver extends TestProperties {
             default: throw new Exception("Unknown mobile platform");
         }
         capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, TEST_PLATFORM);
+        capabilities.setCapability(MobileCapabilityType.UDID, UDID);
 
         // Setup type of application: mobile, web (or hybrid)
         if(AUT != null && SUT == null){
             // Native
             File app = new File(AUT);
             capabilities.setCapability(MobileCapabilityType.APP, app.getAbsolutePath());
+            capabilities.setCapability("appPackage", APP_PACKAGE);
+            capabilities.setCapability("appActivity", APP_ACTIVITY);
+            capabilities.setCapability("autoLaunch", AUTO_LAUNCH);
         } else if(SUT != null && AUT == null){
             // Web
             capabilities.setCapability(MobileCapabilityType.BROWSER_NAME, browserName);

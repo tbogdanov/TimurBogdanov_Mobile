@@ -1,11 +1,11 @@
 package hw3;
 
+import org.testng.Reporter;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import setup.Driver;
 
-import static enums.Paths.NATIVE_TEST_PROPERTY;
-import static enums.Paths.WEB_TEST_PROPERTY;
+import static enums.Paths.*;
 
 public class Hooks extends Driver {
 
@@ -16,16 +16,34 @@ public class Hooks extends Driver {
     @BeforeSuite(groups = {"native"})
     public void setUpNative() throws Exception {
         prepareDriver(NATIVE_TEST_PROPERTY.toString());
-        System.out.println("Driver prepared for NATIVE tests");
+        Reporter.log("Driver prepared for NATIVE tests");
+    }
+
+    @BeforeSuite(groups = {"native-android-farm"})
+    public void setUpNativeAndroidFarm() throws Exception {
+        prepareDriver(NATIVE_ANDROID_FARM_PROPERTY.toString());
+        Reporter.log("Driver prepared for Native Android Farm tests");
+    }
+
+    @BeforeSuite(groups = {"native-android-farm-autolaunch"})
+    public void setUpNativeAndroidFarmAutoLaunch() throws Exception {
+        prepareDriver(NATIVE_ANDROID_FARM_AUTOLAUNCH.toString());
+        Reporter.log("Driver prepared for Native Android Farm tests (w/ Autolaunch)");
     }
 
     @BeforeSuite(groups = {"web"})
     public void setUpWeb() throws Exception {
         prepareDriver(WEB_TEST_PROPERTY.toString());
-        System.out.println("Driver prepared for WEB tests");
+        Reporter.log("Driver prepared for WEB tests");
     }
 
-    @AfterSuite(groups = {"native", "web"})
+    @BeforeSuite(groups = {"web-ios-farm"})
+    public void setUpWebIosFarm() throws Exception {
+        prepareDriver(WEB_IOS_FARM_PROPERTY.toString());
+        Reporter.log("Driver prepared for Web iOS Farm tests");
+    }
+
+    @AfterSuite(alwaysRun = true)
     public void tearDown() throws Exception {
         driver().quit();
         System.out.println("Driver closed");

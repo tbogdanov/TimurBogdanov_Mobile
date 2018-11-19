@@ -19,14 +19,14 @@ public class ContactManagerNativeTest extends Driver {
         super();
     }
 
-    @BeforeMethod(alwaysRun = true, groups = {"native"})
+    @BeforeMethod(alwaysRun = true, groups = {"native", "native-android-farm", "native-android-farm-autolaunch"})
     public void preparePages() throws Exception {
             mainPage = new MainPage(driver());
             addContactPage = new AddContactPage(driver());
     }
 
-    @Test(groups = {"native"})
-    public void ContactManagerTest() throws Exception {
+    @Test(groups = {"native", "native-android-farm", "native-android-farm-autolaunch"}, description = "Add Contact Page Test")
+    public void AddContactPageTest() throws Exception {
         mainPage.tapAddContact();
         addContactPage.checkFieldTitles();
         addContactPage.enterNamePhone(VASILIY_PUPKIN);
