@@ -46,6 +46,6 @@ public class Hooks extends Driver {
     @AfterSuite(alwaysRun = true)
     public void tearDown() throws Exception {
         driver().quit();
-        System.out.println("Driver closed");
+        Reporter.log("Driver closed");
     }
 }
